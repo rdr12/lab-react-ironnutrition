@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-function AddFood(){
+const NewFood(){
+    
     const [form, setForm] = useState({
         name: '',
         calories: '',
@@ -8,19 +9,22 @@ function AddFood(){
         quantity: ''
     })
 
-    function handleChange = (event) => {      
-        const setForm({...form, [event.target.name] = event.target.value})
-        
-     
-
-    }
-
-    function handleOnSubmit = (event) => {
+    const handleOnSubmit = (event) => {
         event.preventDefault() 
         const newFood = {form}
-        props.handleAddFood(newFood)
+        props.handleNewFood(newFood)
     }   
 
+
+    const handleChange = (event) => {    
+        const formCopy = {...form};
+        formCopy[event.target.name] = event.target.value;
+        formCopy["quantity"] = 0;
+        setForm(formCopy)
+        
+    }
+
+   
 }
 
 export default NewFood;
